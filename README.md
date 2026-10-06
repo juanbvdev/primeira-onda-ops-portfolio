@@ -1,5 +1,7 @@
 # Primeira Onda OPS
 
+[English](README.md) | [Português](README.pt-BR.md)
+
 **A real-world operations management system built for a surf school.**
 
 Primeira Onda OPS was developed to replace manual operational workflows with a centralized web application for managing students, lesson scheduling, packages, payments, instructors and day-to-day school operations.
@@ -45,6 +47,46 @@ Primeira Onda OPS centralizes the school's core workflows in a mobile-first appl
 - Progressive Web App (PWA) installation on supported devices
 
 The system was designed for a real business workflow rather than as a generic CRUD application.
+
+---
+
+## Product walkthrough
+
+### Scheduling and lesson operations
+
+![Agenda](assets/screenshots/agenda.png)
+
+The agenda combines upcoming lessons, confirmation status, instructors, student counts and day-by-day lesson management in one operational view.
+
+### Packages, one-off lessons and payments
+
+![Packages and one-off lessons](assets/screenshots/pacotes-e-avulsa.png)
+
+Sales can represent both packages and one-off lessons, with payment status, received amounts, outstanding balances and available lesson credits kept separate.
+
+### Financial overview
+
+![Financial overview](assets/screenshots/financeiro-owner-admin.png)
+
+Administrators can review sales, received payments, instructor compensation, payouts and current balances across daily, weekly and monthly periods.
+
+### Student management
+
+![Students](assets/screenshots/alunos.png)
+
+Student records can be searched and managed centrally, including operational details used by the school.
+
+### Instructor management
+
+![Instructors](assets/screenshots/instrutores.png)
+
+The operational view separates instructor balances and responsibilities, including the distinction between regular instructors and the school owner.
+
+### Instructor balance and payment history
+
+![Instructor balance](assets/screenshots/saldo-instrutor.png)
+
+Instructors can review their own generated earnings, paid amounts and payment history without receiving unnecessary access to the rest of the school's financial data.
 
 ---
 
@@ -160,12 +202,6 @@ The system is in active development and has already completed its main operation
 The production repository remains private because it contains the real implementation and business-specific logic.
 
 This public repository exists to document the architecture, product thinking and engineering work behind the project.
-
----
-
-## Screenshots
-
-Screenshots and interface walkthroughs will be added here as the public portfolio version is prepared.
 
 ---
 
