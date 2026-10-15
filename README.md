@@ -45,6 +45,7 @@ Primeira Onda OPS centralizes the school's core workflows in a mobile-first appl
 - Instructor-specific schedule views
 - Operational and financial summaries
 - Progressive Web App (PWA) installation on supported devices
+- Automatic Web Push notifications for instructor assignments, lesson changes and operational alerts
 
 The system was designed for a real business workflow rather than as a generic CRUD application.
 
@@ -172,13 +173,29 @@ Current project checks include:
 - production build validation
 - PWA validation
 
-At the current stage, the project has reached **475 automated tests across 86 test files**, with lint, TypeScript and build checks passing in the latest recorded validation.
+At the current stage, the project has reached **490+ automated tests across 90+ test files**, with lint, TypeScript and build checks passing in the latest recorded validation.
 
 Critical changes are generally developed using a workflow similar to:
 
 **RED → GREEN → REGRESSION**
 
 Automated testing is combined with manual validation for real user flows and environment-specific behavior.
+
+---
+
+## Web Push notifications
+
+Primeira Onda OPS includes an event-driven Web Push system for operational updates. Instructors can receive notifications about new assignments, rescheduled or canceled lessons, and relevant assignment changes. The school owner can receive alerts for operational items that require attention.
+
+The notification flow combines:
+
+- PostgreSQL-backed event outbox and delivery tracking, with deduplication and retry handling;
+- Supabase Edge Functions for authenticated server-side Web Push delivery using VAPID;
+- `pg_cron` and `pg_net` for automatic queue processing;
+- per-user, per-device subscriptions and role-aware recipients;
+- a PWA Service Worker that opens the relevant screen when a notification is tapped.
+
+The flow was validated on a real Android device in a separate demo environment before being deployed to production. The public case study intentionally excludes credentials, private source code and operational data.
 
 ---
 
