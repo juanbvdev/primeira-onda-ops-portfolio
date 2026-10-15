@@ -45,6 +45,7 @@ O Primeira Onda OPS centraliza os principais fluxos da escola em uma aplicação
 - Visões específicas da agenda do instrutor
 - Resumos operacionais e financeiros
 - Instalação como Progressive Web App (PWA) em dispositivos compatíveis
+- Notificações Web Push automáticas para atribuições de instrutores, alterações de aulas e alertas operacionais
 
 O sistema foi criado para um fluxo de negócio real, e não como um CRUD genérico de estudo.
 
@@ -172,13 +173,29 @@ As verificações atuais incluem:
 - validação do build de produção
 - validação da PWA
 
-No estágio atual, o projeto chegou a **475 testes automatizados em 86 arquivos de teste**, com lint, TypeScript e build aprovados na validação registrada mais recente.
+No estágio atual, o projeto chegou a **mais de 490 testes automatizados em mais de 90 arquivos de teste**, com lint, TypeScript e build aprovados na validação registrada mais recente.
 
 Mudanças críticas normalmente seguem um fluxo semelhante a:
 
 **RED → GREEN → REGRESSION**
 
 Os testes automatizados são combinados com validação manual de fluxos reais e de comportamentos específicos do ambiente.
+
+---
+
+## Notificações Web Push
+
+O Primeira Onda OPS conta com um sistema de notificações Web Push orientado a eventos. Instrutores podem receber avisos sobre novas atribuições, reagendamentos, cancelamentos e mudanças relevantes nas aulas. O proprietário pode receber alertas sobre pendências operacionais que exigem atenção.
+
+A arquitetura combina:
+
+- fila de eventos e controle de entregas no PostgreSQL, com deduplicação e tratamento de novas tentativas;
+- Supabase Edge Functions para envio Web Push autenticado com VAPID;
+- `pg_cron` e `pg_net` para processamento automático da fila;
+- inscrições por usuário e dispositivo, com destinatários definidos conforme permissões;
+- Service Worker da PWA com navegação contextual ao tocar na notificação.
+
+O fluxo foi validado em um dispositivo Android real no ambiente demo antes da implantação em produção. Este case público não expõe credenciais, código-fonte privado nem dados operacionais.
 
 ---
 
