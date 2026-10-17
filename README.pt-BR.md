@@ -34,6 +34,8 @@ O Primeira Onda OPS centraliza os principais fluxos da escola em uma aplicação
 ### Principais funcionalidades
 
 - Cadastro, busca e gestão de alunos
+- Portal do Aluno com solicitações, aprovações e contrapropostas
+- Consulta de aulas, créditos e dados pessoais pelo aluno
 - Agendamento de aulas de surf
 - Horários padrão e excepcionais
 - Aulas com múltiplos alunos e instrutores
@@ -52,6 +54,24 @@ O sistema foi criado para um fluxo de negócio real, e não como um CRUD genéri
 ---
 
 ## Visão do produto
+
+### Portal do Aluno — experiência mobile
+
+O portal oferece uma experiência própria e mobile-first para o aluno consultar aulas, solicitar agendamentos, acompanhar pacotes e atualizar seus dados. As imagens abaixo utilizam **dados fictícios do ambiente de demonstração**.
+
+| Início | Minhas aulas | Solicitar agendamento |
+|:---:|:---:|:---:|
+| <img src="assets/screenshots/portaldoaluno-home.jpg" alt="Tela inicial do Portal do Aluno" width="230"> | <img src="assets/screenshots/portaldoaluno-minhas-aulas.jpg" alt="Histórico de aulas do aluno" width="230"> | <img src="assets/screenshots/portaldoaluno-agendamento.jpg" alt="Formulário de solicitação de agendamento" width="230"> |
+
+| Pacotes e avulsas | Perfil |
+|:---:|:---:|
+| <img src="assets/screenshots/portaldoaluno-pacotes.jpg" alt="Créditos de pacotes e situação dos pagamentos" width="230"> | <img src="assets/screenshots/portaldoaluno-perfil.jpg" alt="Edição de dados no Portal do Aluno" width="230"> |
+
+O aluno pode consultar aulas futuras e anteriores, conferir créditos disponíveis e reservados e solicitar agendamentos, reagendamentos e cancelamentos. A gestão analisa os pedidos antes de aplicar alterações operacionais. Quando propõe outra data ou horário, é necessário o aceite explícito do aluno antes da efetivação. O portal também oferece atualização de dados pessoais e de contato.
+
+**O pagamento online ainda não está disponível.** A compra de pacotes e o pagamento antecipado de aulas aparecem como “Em breve”; o acompanhamento de créditos e da situação de pagamentos já registrados é informativo.
+
+### Operação da escola — gestão e instrutores
 
 ### Agenda e operação das aulas
 
@@ -173,7 +193,7 @@ As verificações atuais incluem:
 - validação do build de produção
 - validação da PWA
 
-No estágio atual, o projeto chegou a **mais de 490 testes automatizados em mais de 90 arquivos de teste**, com lint, TypeScript e build aprovados na validação registrada mais recente.
+A validação local mais recente informada incluiu **715 testes automatizados em 120 arquivos de teste**, com lint e TypeScript aprovados. Esses números descrevem a suíte de desenvolvimento, não uma homologação funcional integral em produção.
 
 Mudanças críticas normalmente seguem um fluxo semelhante a:
 
@@ -214,7 +234,7 @@ A camada PWA foi mantida propositalmente conservadora:
 
 ## Status do projeto
 
-O sistema está em desenvolvimento ativo e já concluiu seus principais módulos operacionais.
+O sistema está em desenvolvimento ativo e já concluiu seus principais módulos operacionais e um Portal do Aluno mobile-first. O pagamento online pelo aluno segue planejado, ainda não lançado. Os fluxos são validados em ambiente demo separado antes de publicações controladas em produção.
 
 O repositório de produção continua privado porque contém a implementação real e regras específicas do negócio.
 
