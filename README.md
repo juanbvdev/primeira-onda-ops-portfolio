@@ -34,6 +34,8 @@ Primeira Onda OPS centralizes the school's core workflows in a mobile-first appl
 ### Main features
 
 - Student registration, search and management
+- Student portal for lesson requests, approvals and counterproposals
+- Student access to lesson history, credits and profile details
 - Surf lesson scheduling
 - Standard and exceptional lesson times
 - Multi-student and multi-instructor lessons
@@ -52,6 +54,24 @@ The system was designed for a real business workflow rather than as a generic CR
 ---
 
 ## Product walkthrough
+
+### Student portal — mobile experience
+
+The student-facing portal offers a dedicated, mobile-first experience for checking lessons, requesting bookings, monitoring packages and updating profile details. The screens below use **fictional demo data**.
+
+| Home | Lessons | Booking request |
+|:---:|:---:|:---:|
+| <img src="assets/screenshots/portaldoaluno-home.jpg" alt="Student portal home" width="230"> | <img src="assets/screenshots/portaldoaluno-minhas-aulas.jpg" alt="Student lesson history" width="230"> | <img src="assets/screenshots/portaldoaluno-agendamento.jpg" alt="Student booking request" width="230"> |
+
+| Packages and one-off lessons | Profile |
+|:---:|:---:|
+| <img src="assets/screenshots/portaldoaluno-pacotes.jpg" alt="Student package balance and payment status" width="230"> | <img src="assets/screenshots/portaldoaluno-perfil.jpg" alt="Student profile editing" width="230"> |
+
+Students can review upcoming and past lessons, see reserved and available credits, and submit booking, rescheduling and cancellation requests. Management reviews requests before applying operational changes. When a different date or time is proposed, the student must explicitly accept it before booking is finalized. The portal also offers account and contact detail management.
+
+**Online checkout is not yet available.** The portal labels future package purchases and advance lesson payments as “Coming soon”; existing payment status and package credit information are informational.
+
+### School operations — management and instructors
 
 ### Scheduling and lesson operations
 
@@ -173,7 +193,7 @@ Current project checks include:
 - production build validation
 - PWA validation
 
-At the current stage, the project has reached **490+ automated tests across 90+ test files**, with lint, TypeScript and build checks passing in the latest recorded validation.
+The latest reported local validation included **715 automated tests across 120 test files**, with lint and TypeScript checks passing. This reflects the development test suite rather than a claim of complete production functional testing.
 
 Critical changes are generally developed using a workflow similar to:
 
@@ -214,7 +234,7 @@ The PWA layer is intentionally conservative:
 
 ## Project status
 
-The system is in active development and has already completed its main operational modules.
+The system is in active development and has already completed its main operational modules and a mobile-first student portal. Online student checkout remains planned, not released. Functionality is validated in a separate demo environment before controlled production releases.
 
 The production repository remains private because it contains the real implementation and business-specific logic.
 
