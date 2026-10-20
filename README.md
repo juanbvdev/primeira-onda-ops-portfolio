@@ -49,18 +49,20 @@ Lesson history and profile editing complete the student experience.
 |:---:|:---:|
 | <img src="assets/screenshots/portaldoaluno-minhas-aulas.jpg" alt="Student Portal lesson history" width="230"> | <img src="assets/screenshots/portaldoaluno-perfil.jpg" alt="Editing personal and contact details in the Student Portal" width="230"> |
 
-### Management — financial overview
+### Management — scheduling and lessons
+
+Organize time slots, lessons, students and instructors in a clear view of the school schedule.
+
+<img src="assets/screenshots/agenda.png" alt="Schedule with lessons, students and instructors" width="680">
+
+<details>
+<summary>Explore financial tracking, students, packages and instructors</summary>
 
 Sales, receipts, instructor earnings and payouts have distinct meanings and are presented separately.
 
-<img src="assets/screenshots/financeiro-owner-admin.png" alt="Financial dashboard with period indicators and overall balances" width="680">
-
-<details>
-<summary>Explore scheduling, students, packages and instructors</summary>
-
-| Schedule | Students | Packages and one-off lessons |
+| Financial overview | Students | Packages and one-off lessons |
 |:---:|:---:|:---:|
-| <img src="assets/screenshots/agenda.png" alt="Schedule with lessons, participants and instructors" width="230"> | <img src="assets/screenshots/alunos.png" alt="Student search and management using demonstration data" width="230"> | <img src="assets/screenshots/pacotes-e-avulsa.png" alt="Package, one-off lesson and payment management" width="230"> |
+| <img src="assets/screenshots/financeiro-owner-admin.png" alt="Financial dashboard with period indicators and overall balances" width="230"> | <img src="assets/screenshots/alunos.png" alt="Student search and management using demonstration data" width="230"> | <img src="assets/screenshots/pacotes-e-avulsa.png" alt="Package, one-off lesson and payment management" width="230"> |
 
 | Instructors | Instructor balance and history |
 |:---:|:---:|

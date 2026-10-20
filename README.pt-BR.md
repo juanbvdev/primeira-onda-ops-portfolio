@@ -49,18 +49,20 @@ Histórico de aulas e edição dos dados pessoais completam a experiência do al
 |:---:|:---:|
 | <img src="assets/screenshots/portaldoaluno-minhas-aulas.jpg" alt="Histórico de aulas no Portal do Aluno" width="230"> | <img src="assets/screenshots/portaldoaluno-perfil.jpg" alt="Edição de dados pessoais e contato no Portal do Aluno" width="230"> |
 
-### Gestão — visão financeira
+### Gestão — agenda e aulas
+
+Organize horários, aulas, alunos e instrutores em uma visão clara da agenda da escola.
+
+<img src="assets/screenshots/agenda.png" alt="Agenda com horários, aulas, alunos e instrutores" width="680">
+
+<details>
+<summary>Explorar financeiro, alunos, pacotes e instrutores</summary>
 
 Vendas, recebimentos, remuneração e repasses têm significados distintos e são apresentados separadamente.
 
-<img src="assets/screenshots/financeiro-owner-admin.png" alt="Painel financeiro com indicadores por período e saldos gerais" width="680">
-
-<details>
-<summary>Explorar agenda, alunos, pacotes e instrutores</summary>
-
-| Agenda | Alunos | Pacotes e avulsas |
+| Financeiro | Alunos | Pacotes e avulsas |
 |:---:|:---:|:---:|
-| <img src="assets/screenshots/agenda.png" alt="Agenda com aulas, participantes e instrutores" width="230"> | <img src="assets/screenshots/alunos.png" alt="Busca e gestão de cadastros de alunos com dados de demonstração" width="230"> | <img src="assets/screenshots/pacotes-e-avulsa.png" alt="Gestão de pacotes, aulas avulsas e pagamentos" width="230"> |
+| <img src="assets/screenshots/financeiro-owner-admin.png" alt="Painel financeiro com indicadores por período e saldos gerais" width="230"> | <img src="assets/screenshots/alunos.png" alt="Busca e gestão de cadastros de alunos com dados de demonstração" width="230"> | <img src="assets/screenshots/pacotes-e-avulsa.png" alt="Gestão de pacotes, aulas avulsas e pagamentos" width="230"> |
 
 | Instrutores | Saldo e histórico do instrutor |
 |:---:|:---:|
