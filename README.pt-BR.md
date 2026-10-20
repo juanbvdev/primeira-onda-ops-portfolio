@@ -1,263 +1,128 @@
 # Primeira Onda OPS
 
-[English](README.md) | [Português](README.pt-BR.md)
+[English](README.md) | **Português**
 
-**Um sistema real de gestão operacional desenvolvido para uma escola de surf.**
+**A operação de uma escola de surf, organizada em um só lugar.**
 
-O Primeira Onda OPS foi criado para substituir processos manuais por uma aplicação web centralizada para gestão de alunos, agenda de aulas, pacotes, pagamentos, instrutores e da operação diária da escola.
+Sistema em produção que conecta agenda, alunos, instrutores, pacotes e controle financeiro a um Portal do Aluno mobile-first. Desenvolvido para os fluxos reais de uma escola, com regras de negócio e permissões aplicadas no backend.
 
-> O código-fonte de produção é privado. Este repositório é um case público do projeto.
+> Case público de um produto real. O código-fonte e a documentação operacional permanecem privados.
 
----
+[Funcionalidades](#funcionalidades) · [Produto em telas](#produto-em-telas) · [Arquitetura](#arquitetura) · [Engenharia e qualidade](#engenharia-e-qualidade)
 
-## O problema
+## O problema que o OPS resolve
 
-A operação da escola dependia bastante de coordenação manual e de informações distribuídas entre conversas, memória e controles isolados.
+Agendamentos, créditos e pagamentos distribuídos entre mensagens e controles isolados dificultam a visão da operação. A escola precisa saber quem vai fazer a aula, quem vai ensinar, quais créditos estão disponíveis e o que foi recebido — com cada pessoa acessando apenas o que lhe cabe.
 
-Conforme a operação cresce, isso gera problemas previsíveis:
+O OPS reúne esse trabalho em uma aplicação acessível pelo celular, com experiências próprias para gestão, instrutores e alunos.
 
-- a agenda fica mais difícil de coordenar;
-- dados de alunos e pacotes ficam fragmentados;
-- o uso de créditos fica mais difícil de acompanhar;
-- atribuição de instrutores e repasses exigem controle manual;
-- informações financeiras e operacionais podem se misturar;
-- o acesso a dados sensíveis precisa variar conforme o papel de cada pessoa.
+## Funcionalidades
 
-O objetivo do Primeira Onda OPS foi transformar esses fluxos em um único sistema operacional desenhado em torno da forma real como a escola funciona.
+| Área | O que o sistema entrega |
+|---|---|
+| **Agenda e aulas** | Agendamento, reagendamento, cancelamento e conclusão; horários padrão e excepcionais; múltiplos alunos e instrutores por aula. |
+| **Alunos e créditos** | Cadastro e busca de alunos, pacotes e aulas avulsas, acompanhamento de créditos disponíveis, reservados e utilizados. |
+| **Portal do Aluno** | Consulta de aulas, pacotes e dados pessoais; solicitações de agendamento, reagendamento e cancelamento, com aprovação e contrapropostas. |
+| **Equipe** | Acessos por perfil, agenda própria do instrutor e consulta de remuneração, repasses e histórico. |
+| **Financeiro** | Registro de vendas e recebimentos, pagamentos pendentes, remuneração e repasses, com resumos operacionais e financeiros. |
+| **Comunicação** | Web Push com avisos operacionais e acesso ao contexto da notificação. |
+| **Experiência PWA** | Instalação em dispositivos compatíveis, atualização obrigatória quando uma nova versão está pronta e novidades contextualizadas por perfil. |
+| **Manutenção técnica** | Bloqueio temporário de escritas operacionais no backend e tela de manutenção, com controle técnico independente da aplicação. |
 
----
+No portal, pedidos passam pela gestão; uma proposta de outra data ou horário requer aceite explícito do aluno. O financeiro registra e acompanha as operações da escola; **não inclui checkout online pelo aluno**.
 
-## A solução
+## Produto em telas
 
-O Primeira Onda OPS centraliza os principais fluxos da escola em uma aplicação mobile-first.
+Todas as capturas utilizam **dados fictícios criados para demonstração**.
 
-### Principais funcionalidades
+### Portal do Aluno — pensado para o celular
 
-- Cadastro, busca e gestão de alunos
-- Portal do Aluno com solicitações, aprovações e contrapropostas
-- Consulta de aulas, créditos e dados pessoais pelo aluno
-- Agendamento de aulas de surf
-- Horários padrão e excepcionais
-- Aulas com múltiplos alunos e instrutores
-- Gestão de pacotes e créditos
-- Controle de pagamentos
-- Fluxos de status e conclusão de aulas
-- Remuneração e repasses de instrutores
-- Controle de acesso por owner, administradores e instrutores
-- Visões específicas da agenda do instrutor
-- Resumos operacionais e financeiros
-- Instalação como Progressive Web App (PWA) em dispositivos compatíveis
-- Notificações Web Push automáticas para atribuições de instrutores, alterações de aulas e alertas operacionais
+Próxima aula, solicitação de agendamento e consulta de créditos em uma navegação própria para o aluno.
 
-O sistema foi criado para um fluxo de negócio real, e não como um CRUD genérico de estudo.
-
----
-
-## Visão do produto
-
-### Portal do Aluno — experiência mobile
-
-O portal oferece uma experiência própria e mobile-first para o aluno consultar aulas, solicitar agendamentos, acompanhar pacotes e atualizar seus dados. As imagens abaixo utilizam **dados fictícios do ambiente de demonstração**.
-
-| Início | Minhas aulas | Solicitar agendamento |
+| Início | Solicitar agendamento | Pacotes e avulsas |
 |:---:|:---:|:---:|
-| <img src="assets/screenshots/portaldoaluno-home.jpg" alt="Tela inicial do Portal do Aluno" width="230"> | <img src="assets/screenshots/portaldoaluno-minhas-aulas.jpg" alt="Histórico de aulas do aluno" width="230"> | <img src="assets/screenshots/portaldoaluno-agendamento.jpg" alt="Formulário de solicitação de agendamento" width="230"> |
+| <img src="assets/screenshots/portaldoaluno-home.jpg" alt="Portal do Aluno com próxima aula e atalhos principais" width="230"> | <img src="assets/screenshots/portaldoaluno-agendamento.jpg" alt="Solicitação de aula com data, horário e observações" width="230"> | <img src="assets/screenshots/portaldoaluno-pacotes.jpg" alt="Consulta de créditos e situação dos pagamentos" width="230"> |
 
-| Pacotes e avulsas | Perfil |
+Histórico de aulas e edição dos dados pessoais completam a experiência do aluno.
+
+| Minhas aulas | Perfil |
 |:---:|:---:|
-| <img src="assets/screenshots/portaldoaluno-pacotes.jpg" alt="Créditos de pacotes e situação dos pagamentos" width="230"> | <img src="assets/screenshots/portaldoaluno-perfil.jpg" alt="Edição de dados no Portal do Aluno" width="230"> |
+| <img src="assets/screenshots/portaldoaluno-minhas-aulas.jpg" alt="Histórico de aulas no Portal do Aluno" width="230"> | <img src="assets/screenshots/portaldoaluno-perfil.jpg" alt="Edição de dados pessoais e contato no Portal do Aluno" width="230"> |
 
-O aluno pode consultar aulas futuras e anteriores, conferir créditos disponíveis e reservados e solicitar agendamentos, reagendamentos e cancelamentos. A gestão analisa os pedidos antes de aplicar alterações operacionais. Quando propõe outra data ou horário, é necessário o aceite explícito do aluno antes da efetivação. O portal também oferece atualização de dados pessoais e de contato.
+### Gestão — visão financeira
 
-**O pagamento online ainda não está disponível.** A compra de pacotes e o pagamento antecipado de aulas aparecem como “Em breve”; o acompanhamento de créditos e da situação de pagamentos já registrados é informativo.
+Vendas, recebimentos, remuneração e repasses têm significados distintos e são apresentados separadamente.
 
-### Operação da escola — gestão e instrutores
+<img src="assets/screenshots/financeiro-owner-admin.png" alt="Painel financeiro com indicadores por período e saldos gerais" width="680">
 
-### Agenda e operação das aulas
+<details>
+<summary>Explorar agenda, alunos, pacotes e instrutores</summary>
 
-![Agenda](assets/screenshots/agenda.png)
+| Agenda | Alunos | Pacotes e avulsas |
+|:---:|:---:|:---:|
+| <img src="assets/screenshots/agenda.png" alt="Agenda com aulas, participantes e instrutores" width="230"> | <img src="assets/screenshots/alunos.png" alt="Busca e gestão de cadastros de alunos com dados de demonstração" width="230"> | <img src="assets/screenshots/pacotes-e-avulsa.png" alt="Gestão de pacotes, aulas avulsas e pagamentos" width="230"> |
 
-A agenda reúne próximas aulas, status de confirmação, instrutores, quantidade de alunos e gestão diária das aulas em uma única visão operacional.
+| Instrutores | Saldo e histórico do instrutor |
+|:---:|:---:|
+| <img src="assets/screenshots/instrutores.png" alt="Visão de instrutores e respectivos saldos" width="230"> | <img src="assets/screenshots/saldo-instrutor.png" alt="Remuneração, pagamentos e histórico do instrutor" width="230"> |
 
-### Pacotes, aulas avulsas e pagamentos
+</details>
 
-![Pacotes e avulsas](assets/screenshots/pacotes-e-avulsa.png)
+As capturas ilustram a interface do produto. O case não oferece acesso a contas ou dados de produção.
 
-As vendas podem representar pacotes ou aulas avulsas, mantendo separados status de pagamento, valores recebidos, saldo pendente e créditos de aula disponíveis.
+## Experiência mobile-first e PWA
 
-### Visão financeira
+- **Instalação em dispositivos compatíveis:** acesso como aplicativo, com layout responsivo também no desktop.
+- **Atualização segura:** uma nova versão pronta exige atualização; rascunhos e operações pendentes ou incertas bloqueiam a troca até que seja seguro continuar, com coordenação entre abas.
+- **Navegação Push protegida:** o destino abre diretamente quando permitido. Com edição ou operação pendente, a atividade é preservada e o usuário escolhe quando abrir a notificação.
+- **Novidades relevantes:** consulta voluntária de novidades e histórico filtrados para gestão, instrutor ou aluno, associados à versão instalada.
+- **Manutenção real:** proteção no servidor durante intervenções técnicas, com uma mensagem clara para os usuários.
 
-![Financeiro](assets/screenshots/financeiro-owner-admin.png)
-
-Administradores podem acompanhar vendas, recebimentos, remuneração de instrutores, repasses e saldos atuais em períodos diários, semanais e mensais.
-
-### Gestão de alunos
-
-![Alunos](assets/screenshots/alunos.png)
-
-Os cadastros de alunos podem ser pesquisados e gerenciados de forma centralizada com os dados operacionais necessários para a escola.
-
-### Gestão de instrutores
-
-![Instrutores](assets/screenshots/instrutores.png)
-
-A visão operacional separa os saldos e responsabilidades dos instrutores, incluindo a diferença entre instrutores comuns e o proprietário da escola.
-
-### Saldo e histórico do instrutor
-
-![Saldo do instrutor](assets/screenshots/saldo-instrutor.png)
-
-Cada instrutor pode consultar seus próprios ganhos gerados, valores pagos e histórico de pagamentos sem receber acesso desnecessário ao restante das informações financeiras da escola.
-
----
-
-## Regras de negócio modeladas no software
-
-Alguns exemplos de regras operacionais tratadas pelo sistema:
-
-- as aulas normalmente duram 90 minutos;
-- uma aula pode incluir vários alunos e instrutores;
-- créditos de pacote são controlados por participante;
-- créditos não podem ser consumidos de pacotes não pagos;
-- a conclusão da aula determina o consumo do crédito;
-- a remuneração do instrutor é gerada por aula concluída;
-- repasses são controlados separadamente da remuneração gerada;
-- o instrutor acessa somente as informações necessárias para o próprio trabalho;
-- operações administrativas e financeiras sensíveis são restritas por papel.
-
-Compras históricas, preços, movimentações de crédito e registros financeiros são preservados em vez de serem recalculados com base no catálogo atual.
-
----
+A PWA armazena assets estáticos; respostas de autenticação e dados operacionais não são cacheadas para uso offline. A operação do sistema exige conexão.
 
 ## Arquitetura
 
-O Primeira Onda OPS utiliza uma arquitetura full-stack enxuta, pensada para uma aplicação de pequena empresa com forte necessidade de integridade dos dados.
+| Camada | Tecnologias e responsabilidades |
+|---|---|
+| **Interface** | React, TypeScript, Vite, Tailwind CSS e React Router. |
+| **Identidade e dados** | Supabase Auth e PostgreSQL, com Row Level Security, constraints, funções e operações transacionais. |
+| **Serviços de backend** | Supabase Edge Functions para operações privilegiadas e processamento de notificações. |
+| **Notificações** | Web Push com VAPID, fila de eventos e controle de entregas no PostgreSQL; processamento com pg_cron e pg_net. |
+| **Entrega** | Cloudflare Pages, PWA e Service Worker para assets estáticos e atualização controlada. |
+| **Qualidade** | Vitest, Testing Library, testes SQL, ESLint, TypeScript e validações de build/PWA. |
 
-### Frontend
+O navegador recebe apenas configuração pública. Credenciais privilegiadas e autorização de operações sensíveis ficam no backend.
 
-- React
-- TypeScript
-- Vite
-- Tailwind CSS
-- React Router
+## Engenharia e qualidade
 
-### Backend e dados
+### Desafios resolvidos
 
-- Supabase Auth
-- PostgreSQL
-- Row Level Security (RLS)
-- Funções PostgreSQL / RPCs
-- Supabase Edge Functions
+| Desafio | Abordagem |
+|---|---|
+| **Manter créditos e valores coerentes** | Reserva e consumo de créditos, transações e idempotência; vendas, recebimentos e repasses tratados separadamente. |
+| **Restringir acesso conforme a função** | Autorização no servidor e RLS, com visões próprias para gestão, instrutor e aluno. |
+| **Atualizar sem interromper uma atividade protegida** | Admissão de atualização entre abas, identificação de documento e Service Worker e proteção de formulários e operações. |
+| **Abrir notificações com segurança** | Revalidação de sessão e permissões antes da navegação, respeitando edição, manutenção e atualização. |
+| **Preservar o histórico do negócio** | Compras, preços e movimentos registrados mantêm suas condições históricas. |
 
-### Entrega
+### Qualidade como parte da entrega
 
-- Cloudflare Pages
-- Progressive Web App
-- Interface responsiva e mobile-first
+A validação local registrada reúne **983 testes automatizados em 141 arquivos**, com lint, TypeScript, build e validações PWA aprovados.
 
-O navegador recebe somente a configuração pública apropriada. Operações privilegiadas permanecem no servidor.
+As práticas incluem testes unitários e de integração, comportamento da interface, autorização, regressões e cenários de concorrência em PostgreSQL local. Mudanças críticas são verificadas pelo ciclo **RED → GREEN → REGRESSION**.
 
----
+A entrega combina ambientes separados, artefatos identificados e verificação de integridade para tornar cada publicação rastreável.
 
-## Segurança e integridade dos dados
+## Competências demonstradas
 
-Um dos objetivos principais do projeto foi evitar depender apenas de validações no frontend.
-
-Regras críticas de negócio são protegidas por mecanismos de banco e servidor, incluindo:
-
-- Row Level Security
-- autorização por papel
-- constraints de banco
-- operações transacionais
-- proteções de idempotência
-- fluxos preparados para concorrência
-- funções privilegiadas restritas
-- histórico auditável
-
-A aplicação foi projetada para evitar problemas comuns como ações duplicadas, escalada indevida de privilégios, acesso cruzado entre usuários e operações financeiras parciais.
-
----
-
-## Testes e confiabilidade
-
-O projeto trata regressão automatizada como parte central do desenvolvimento.
-
-As verificações atuais incluem:
-
-- testes unitários e de integração
-- testes SQL e de autorização
-- testes de comportamento da interface
-- cobertura de regressão
-- lint
-- validação TypeScript
-- validação do build de produção
-- validação da PWA
-
-A validação local mais recente informada incluiu **715 testes automatizados em 120 arquivos de teste**, com lint e TypeScript aprovados. Esses números descrevem a suíte de desenvolvimento, não uma homologação funcional integral em produção.
-
-Mudanças críticas normalmente seguem um fluxo semelhante a:
-
-**RED → GREEN → REGRESSION**
-
-Os testes automatizados são combinados com validação manual de fluxos reais e de comportamentos específicos do ambiente.
-
----
-
-## Notificações Web Push
-
-O Primeira Onda OPS conta com um sistema de notificações Web Push orientado a eventos. Instrutores podem receber avisos sobre novas atribuições, reagendamentos, cancelamentos e mudanças relevantes nas aulas. O proprietário pode receber alertas sobre pendências operacionais que exigem atenção.
-
-A arquitetura combina:
-
-- fila de eventos e controle de entregas no PostgreSQL, com deduplicação e tratamento de novas tentativas;
-- Supabase Edge Functions para envio Web Push autenticado com VAPID;
-- `pg_cron` e `pg_net` para processamento automático da fila;
-- inscrições por usuário e dispositivo, com destinatários definidos conforme permissões;
-- Service Worker da PWA com navegação contextual ao tocar na notificação.
-
-O fluxo foi validado em um dispositivo Android real no ambiente demo antes da implantação em produção. Este case público não expõe credenciais, código-fonte privado nem dados operacionais.
-
----
-
-## Progressive Web App
-
-O Primeira Onda OPS pode ser instalado como PWA em dispositivos Android e iOS compatíveis.
-
-A camada PWA foi mantida propositalmente conservadora:
-
-- assets da aplicação podem ser cacheados;
-- respostas de Supabase/Auth/dados de negócio não são cacheadas para operação offline;
-- os módulos operacionais continuam exigindo conexão;
-- atualizações são oferecidas explicitamente ao usuário em vez de forçar recarga durante um formulário ativo.
-
----
-
-## Status do projeto
-
-O sistema está em desenvolvimento ativo e já concluiu seus principais módulos operacionais e um Portal do Aluno mobile-first. O pagamento online pelo aluno segue planejado, ainda não lançado. Os fluxos são validados em ambiente demo separado antes de publicações controladas em produção.
-
-O repositório de produção continua privado porque contém a implementação real e regras específicas do negócio.
-
-Este repositório público existe para documentar arquitetura, decisões de produto e o trabalho de engenharia realizado no projeto.
-
----
-
-## O que este projeto demonstra
-
-O Primeira Onda OPS representa o tipo de trabalho que eu busco desenvolver:
-
-- software voltado para problemas operacionais reais;
-- sistemas internos sob medida para empresas;
-- automação de processos manuais;
-- modelos confiáveis de dados e permissões;
-- interfaces desenhadas para uso diário real;
-- desenvolvimento rápido sem tratar qualidade e testes como opcionais.
-
----
+- Desenvolvimento full-stack orientado a uma operação real.
+- Modelagem de dados, regras de negócio e controle de acesso.
+- Experiência mobile-first para públicos com necessidades distintas.
+- Integração entre PWA, notificações e serviços de backend.
+- Testes de regressão e processo de entrega controlado.
 
 ## Desenvolvedor
 
-**Juan Vieira**  
-Software Developer
+**Juan Vieira** · Software Developer
 
 [Perfil no GitHub](https://github.com/juanbvdev)

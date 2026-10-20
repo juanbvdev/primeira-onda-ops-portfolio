@@ -1,263 +1,128 @@
 # Primeira Onda OPS
 
-[English](README.md) | [Português](README.pt-BR.md)
+**English** | [Português](README.pt-BR.md)
 
-**A real-world operations management system built for a surf school.**
+**A surf school's day-to-day operations, organized in one place.**
 
-Primeira Onda OPS was developed to replace manual operational workflows with a centralized web application for managing students, lesson scheduling, packages, payments, instructors and day-to-day school operations.
+A production application connecting scheduling, students, instructors, packages and financial tracking with a mobile-first Student Portal. Built around a real school's workflows, with business rules and permissions enforced on the backend.
 
-> Production source code is private. This repository is a public case study of the project.
+> A public case study of a real product. Source code and operational documentation remain private.
 
----
+[Features](#features) · [Product walkthrough](#product-walkthrough) · [Architecture](#architecture) · [Engineering and quality](#engineering-and-quality)
 
-## The problem
+## The problem OPS solves
 
-The school's operation depended heavily on manual coordination and information distributed across conversations, memory and isolated controls.
+Bookings, credits and payments spread across messages and separate records make it difficult to see the whole operation. The school needs to know who is attending, who is teaching, which credits are available and what has been received — while giving each person access only to the information they need.
 
-That creates predictable problems as the operation grows:
+OPS brings that work into an application accessible from a phone, with dedicated experiences for management, instructors and students.
 
-- scheduling becomes harder to coordinate;
-- student and package information is fragmented;
-- credit usage can become difficult to track;
-- instructor assignments and payouts require manual control;
-- financial and operational information are easy to mix together;
-- access to sensitive information needs to vary by team role.
+## Features
 
-The goal of Primeira Onda OPS was to turn those workflows into a single operational system designed around how the school actually works.
+| Area | What the system delivers |
+|---|---|
+| **Scheduling and lessons** | Booking, rescheduling, cancellation and completion; standard and exceptional times; multiple students and instructors per lesson. |
+| **Students and credits** | Student registration and search, packages and one-off lessons, tracking of available, reserved and used credits. |
+| **Student Portal** | Lessons, packages and profile details; booking, rescheduling and cancellation requests, with approval and counterproposals. |
+| **Team** | Role-based access, instructors' own schedules, earnings, payouts and history. |
+| **Financial tracking** | Recorded sales and receipts, pending payments, instructor earnings and payouts, with operational and financial summaries. |
+| **Communication** | Web Push operational alerts with access to the relevant notification context. |
+| **PWA experience** | Installation on supported devices, mandatory updates when a new version is ready and release notes tailored to each role. |
+| **Technical maintenance** | Temporary backend restrictions on operational writes and a maintenance screen, managed independently of the application. |
 
----
-
-## The solution
-
-Primeira Onda OPS centralizes the school's core workflows in a mobile-first application.
-
-### Main features
-
-- Student registration, search and management
-- Student portal for lesson requests, approvals and counterproposals
-- Student access to lesson history, credits and profile details
-- Surf lesson scheduling
-- Standard and exceptional lesson times
-- Multi-student and multi-instructor lessons
-- Package and credit management
-- Payment tracking
-- Operational status and lesson completion flows
-- Instructor earnings and payout control
-- Role-based access for owner, administrators and instructors
-- Instructor-specific schedule views
-- Operational and financial summaries
-- Progressive Web App (PWA) installation on supported devices
-- Automatic Web Push notifications for instructor assignments, lesson changes and operational alerts
-
-The system was designed for a real business workflow rather than as a generic CRUD application.
-
----
+Portal requests are reviewed by management; a proposed change of date or time requires the student's explicit acceptance. Financial features record and track school operations; **student online checkout is not included**.
 
 ## Product walkthrough
 
-### Student portal — mobile experience
+All screenshots use **fictional data created for demonstration**.
 
-The student-facing portal offers a dedicated, mobile-first experience for checking lessons, requesting bookings, monitoring packages and updating profile details. The screens below use **fictional demo data**.
+### Student Portal — designed for mobile
 
-| Home | Lessons | Booking request |
+The next lesson, booking requests and credit information in navigation built for students.
+
+| Home | Booking request | Packages and one-off lessons |
 |:---:|:---:|:---:|
-| <img src="assets/screenshots/portaldoaluno-home.jpg" alt="Student portal home" width="230"> | <img src="assets/screenshots/portaldoaluno-minhas-aulas.jpg" alt="Student lesson history" width="230"> | <img src="assets/screenshots/portaldoaluno-agendamento.jpg" alt="Student booking request" width="230"> |
+| <img src="assets/screenshots/portaldoaluno-home.jpg" alt="Student Portal showing the next lesson and main shortcuts" width="230"> | <img src="assets/screenshots/portaldoaluno-agendamento.jpg" alt="Lesson request with date, time and notes" width="230"> | <img src="assets/screenshots/portaldoaluno-pacotes.jpg" alt="Package credits and payment status" width="230"> |
 
-| Packages and one-off lessons | Profile |
+Lesson history and profile editing complete the student experience.
+
+| Lessons | Profile |
 |:---:|:---:|
-| <img src="assets/screenshots/portaldoaluno-pacotes.jpg" alt="Student package balance and payment status" width="230"> | <img src="assets/screenshots/portaldoaluno-perfil.jpg" alt="Student profile editing" width="230"> |
+| <img src="assets/screenshots/portaldoaluno-minhas-aulas.jpg" alt="Student Portal lesson history" width="230"> | <img src="assets/screenshots/portaldoaluno-perfil.jpg" alt="Editing personal and contact details in the Student Portal" width="230"> |
 
-Students can review upcoming and past lessons, see reserved and available credits, and submit booking, rescheduling and cancellation requests. Management reviews requests before applying operational changes. When a different date or time is proposed, the student must explicitly accept it before booking is finalized. The portal also offers account and contact detail management.
+### Management — financial overview
 
-**Online checkout is not yet available.** The portal labels future package purchases and advance lesson payments as “Coming soon”; existing payment status and package credit information are informational.
+Sales, receipts, instructor earnings and payouts have distinct meanings and are presented separately.
 
-### School operations — management and instructors
+<img src="assets/screenshots/financeiro-owner-admin.png" alt="Financial dashboard with period indicators and overall balances" width="680">
 
-### Scheduling and lesson operations
+<details>
+<summary>Explore scheduling, students, packages and instructors</summary>
 
-![Agenda](assets/screenshots/agenda.png)
+| Schedule | Students | Packages and one-off lessons |
+|:---:|:---:|:---:|
+| <img src="assets/screenshots/agenda.png" alt="Schedule with lessons, participants and instructors" width="230"> | <img src="assets/screenshots/alunos.png" alt="Student search and management using demonstration data" width="230"> | <img src="assets/screenshots/pacotes-e-avulsa.png" alt="Package, one-off lesson and payment management" width="230"> |
 
-The agenda combines upcoming lessons, confirmation status, instructors, student counts and day-by-day lesson management in one operational view.
+| Instructors | Instructor balance and history |
+|:---:|:---:|
+| <img src="assets/screenshots/instrutores.png" alt="Instructor overview and balances" width="230"> | <img src="assets/screenshots/saldo-instrutor.png" alt="Instructor earnings, payments and history" width="230"> |
 
-### Packages, one-off lessons and payments
+</details>
 
-![Packages and one-off lessons](assets/screenshots/pacotes-e-avulsa.png)
+The screenshots illustrate the product interface. This case study does not provide access to production accounts or data.
 
-Sales can represent both packages and one-off lessons, with payment status, received amounts, outstanding balances and available lesson credits kept separate.
+## Mobile-first PWA experience
 
-### Financial overview
+- **Installation on supported devices:** app-like access, with a responsive layout on desktop too.
+- **Safe updates:** a ready new version requires an update; drafts and pending or uncertain operations block the transition until it is safe to proceed, with coordination across tabs.
+- **Protected Push navigation:** the destination opens directly when permitted. During editing or a pending operation, the activity is preserved and the user chooses when to open the notification.
+- **Relevant release notes:** optional access to notes and history filtered for management, instructors or students, tied to the installed version.
+- **Real maintenance controls:** server-side protection during technical interventions, with clear messaging for users.
 
-![Financial overview](assets/screenshots/financeiro-owner-admin.png)
-
-Administrators can review sales, received payments, instructor compensation, payouts and current balances across daily, weekly and monthly periods.
-
-### Student management
-
-![Students](assets/screenshots/alunos.png)
-
-Student records can be searched and managed centrally, including operational details used by the school.
-
-### Instructor management
-
-![Instructors](assets/screenshots/instrutores.png)
-
-The operational view separates instructor balances and responsibilities, including the distinction between regular instructors and the school owner.
-
-### Instructor balance and payment history
-
-![Instructor balance](assets/screenshots/saldo-instrutor.png)
-
-Instructors can review their own generated earnings, paid amounts and payment history without receiving unnecessary access to the rest of the school's financial data.
-
----
-
-## Business rules modeled in software
-
-Some examples of operational rules handled by the system:
-
-- lessons normally last 90 minutes;
-- one lesson may include multiple students and instructors;
-- package credits are tracked per participant;
-- credits cannot be consumed from unpaid packages;
-- lesson completion determines credit consumption;
-- instructor earnings are generated per completed lesson;
-- payouts are tracked separately from earnings;
-- instructor access is restricted to the information required for their own work;
-- sensitive administrative and financial operations are restricted by role.
-
-Historical purchases, prices, credit movements and financial records are preserved instead of being recalculated from current catalog values.
-
----
+The PWA caches static assets; authentication responses and operational data are not cached for offline use. The system requires connectivity for business operations.
 
 ## Architecture
 
-Primeira Onda OPS uses a lightweight full-stack architecture designed for a small business application with strong data integrity requirements.
+| Layer | Technologies and responsibilities |
+|---|---|
+| **Interface** | React, TypeScript, Vite, Tailwind CSS and React Router. |
+| **Identity and data** | Supabase Auth and PostgreSQL, with Row Level Security, constraints, functions and transactional operations. |
+| **Backend services** | Supabase Edge Functions for privileged operations and notification processing. |
+| **Notifications** | Web Push with VAPID, a PostgreSQL event outbox and delivery tracking; processing through pg_cron and pg_net. |
+| **Delivery** | Cloudflare Pages, PWA and a Service Worker for static assets and controlled updates. |
+| **Quality** | Vitest, Testing Library, SQL tests, ESLint, TypeScript and build/PWA validation. |
 
-### Frontend
+The browser receives only public configuration. Privileged credentials and authorization for sensitive operations stay on the backend.
 
-- React
-- TypeScript
-- Vite
-- Tailwind CSS
-- React Router
+## Engineering and quality
 
-### Backend & data
+### Engineering challenges addressed
 
-- Supabase Auth
-- PostgreSQL
-- Row Level Security (RLS)
-- PostgreSQL functions / RPCs
-- Supabase Edge Functions
+| Challenge | Approach |
+|---|---|
+| **Keeping credits and financial records consistent** | Credit reservation and consumption, transactions and idempotency; sales, receipts and payouts handled separately. |
+| **Restricting access by responsibility** | Server-side authorization and RLS, with dedicated views for management, instructors and students. |
+| **Updating without interrupting a protected activity** | Cross-tab update admission, document and Service Worker identity checks, and protection for forms and operations. |
+| **Opening notifications safely** | Session and permission revalidation before navigation, respecting edits, maintenance and updates. |
+| **Preserving business history** | Recorded purchases, prices and movements retain their historical terms. |
 
-### Delivery
+### Quality as part of delivery
 
-- Cloudflare Pages
-- Progressive Web App
-- Responsive, mobile-first interface
+The recorded local validation includes **983 automated tests across 141 test files**, with lint, TypeScript, build and PWA checks passing.
 
-The browser receives only public application configuration. Privileged operations remain server-side.
+Practices include unit and integration tests, UI behavior, authorization, regression coverage and concurrency scenarios in local PostgreSQL. Critical changes are checked through **RED → GREEN → REGRESSION**.
 
----
+Delivery combines separate environments, identified artifacts and integrity verification to make each publication traceable.
 
-## Security & data integrity
+## Skills demonstrated
 
-A major goal of the project was to avoid relying only on frontend validation.
-
-Business-critical rules are enforced through database and server-side mechanisms such as:
-
-- Row Level Security
-- role-based authorization
-- database constraints
-- transactional operations
-- idempotency protections
-- concurrency-aware flows
-- restricted privileged functions
-- audit-friendly historical records
-
-The application is designed to prevent common problems such as duplicate actions, unauthorized role escalation, cross-user data access and partial financial operations.
-
----
-
-## Testing & reliability
-
-The project uses automated regression testing as a core part of development.
-
-Current project checks include:
-
-- unit and integration tests
-- SQL and authorization tests
-- UI behavior tests
-- regression coverage
-- linting
-- TypeScript validation
-- production build validation
-- PWA validation
-
-The latest reported local validation included **715 automated tests across 120 test files**, with lint and TypeScript checks passing. This reflects the development test suite rather than a claim of complete production functional testing.
-
-Critical changes are generally developed using a workflow similar to:
-
-**RED → GREEN → REGRESSION**
-
-Automated testing is combined with manual validation for real user flows and environment-specific behavior.
-
----
-
-## Web Push notifications
-
-Primeira Onda OPS includes an event-driven Web Push system for operational updates. Instructors can receive notifications about new assignments, rescheduled or canceled lessons, and relevant assignment changes. The school owner can receive alerts for operational items that require attention.
-
-The notification flow combines:
-
-- PostgreSQL-backed event outbox and delivery tracking, with deduplication and retry handling;
-- Supabase Edge Functions for authenticated server-side Web Push delivery using VAPID;
-- `pg_cron` and `pg_net` for automatic queue processing;
-- per-user, per-device subscriptions and role-aware recipients;
-- a PWA Service Worker that opens the relevant screen when a notification is tapped.
-
-The flow was validated on a real Android device in a separate demo environment before being deployed to production. The public case study intentionally excludes credentials, private source code and operational data.
-
----
-
-## Progressive Web App
-
-Primeira Onda OPS can be installed as a PWA on supported Android and iOS devices.
-
-The PWA layer is intentionally conservative:
-
-- application assets can be cached;
-- Supabase/Auth/business responses are not cached for offline operation;
-- business modules still require connectivity;
-- updates are explicitly offered to the user instead of forcing a reload during an active form.
-
----
-
-## Project status
-
-The system is in active development and has already completed its main operational modules and a mobile-first student portal. Online student checkout remains planned, not released. Functionality is validated in a separate demo environment before controlled production releases.
-
-The production repository remains private because it contains the real implementation and business-specific logic.
-
-This public repository exists to document the architecture, product thinking and engineering work behind the project.
-
----
-
-## What this project demonstrates
-
-Primeira Onda OPS represents the type of work I focus on building:
-
-- software designed around real operational problems;
-- custom internal business systems;
-- automation of manual workflows;
-- reliable data and permission models;
-- interfaces designed for actual day-to-day use;
-- rapid development without treating quality and testing as optional.
-
----
+- Full-stack development grounded in real operations.
+- Data modeling, business rules and access control.
+- Mobile-first experiences for users with different needs.
+- Integration of PWA, notifications and backend services.
+- Regression testing and a controlled delivery process.
 
 ## Developer
 
-**Juan Vieira**  
-Software Developer
+**Juan Vieira** · Software Developer
 
 [GitHub Profile](https://github.com/juanbvdev)
